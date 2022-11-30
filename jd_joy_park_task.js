@@ -6,7 +6,7 @@ export HELP_JOYPARK=""
 ============Quantumultx===============
 [task_local]
 #汪汪乐园每日任务
-0 1,7,20 * * * jd_joypark_task.js, tag=汪汪乐园每日任务, enabled=true
+0 1,7,20 * * * jd_joypark_task.js, tag=汪汪乐园每日任务, img-url=https://raw.githubusercontent.com/tsukasa007/icon/master/jd_joypark_task.png, enabled=true
 
 ================Loon==============
 [Script]
@@ -339,7 +339,7 @@ function apTaskDrawAward(taskId, taskType) {
 
 function taskPostClientActionUrl(body, functionId) {
   return {
-    url: `https://api.m.jd.com/client.action?${functionId ? `functionId=${functionId}` : ``}`,
+    url: `https://api.m.jd.com/client.action${functionId ? `?functionId=${functionId}` : ''}`,
     body: body,
     headers: {
       'User-Agent': $.UA,
