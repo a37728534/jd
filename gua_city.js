@@ -84,8 +84,9 @@ $.token = process.env.gua_log_token || token // token
             $.index = i + 1;
             await getUA()
             await getInviteId();
-            if($.index >= (10 + $.collectAllCount)) {
-                console.log(`已获取超过10个`)
+            await $.wait(3000)
+            if($.index >= (5 + $.collectAllCount)) {
+                console.log(`已获取超过5个`)
                 break
             }
         }
@@ -151,7 +152,7 @@ $.token = process.env.gua_log_token || token // token
                     isLogin = false
                     break
                 }
-                // await $.wait(3000)
+                await $.wait(3000)
             }
             if(!isLogin){
                 continue
@@ -207,7 +208,7 @@ function taskPostUrl(functionId, body) {
         url: `${JD_API_HOST}`,
         body: `functionId=${functionId}&appid=signed_wh5&body=${(JSON.stringify(body))}&client=wh5&clientVersion=1.0.0`,
         headers: {
-            'Cookie': cookie,
+            'Cookie': ($.abcv ? $.abcv : "")+cookie,
             'Connection': 'keep-alive',
             'Content-Type': 'application/x-www-form-urlencoded',
             "User-Agent": $.UA,
